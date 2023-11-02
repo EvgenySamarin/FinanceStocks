@@ -12,19 +12,24 @@ object Lib {
 
         /* test */
         const val junit = "4.13.2"
-        const val jupiter = "5.9.3"
         const val runner = "1.1.0"
 
         const val hilt = "2.48"
+        const val hiltComposeNavigation = "1.1.0"
+
         const val composeActivity = "1.8.0"
+        const val composeLifecycleRuntime = "2.6.2"
+        const val composeNavigation = "2.7.5"
 
         const val bomCompose = "2023.08.00"
     }
 
 
     object Di {
-        const val hilt = "com.google.dagger:hilt-android:${Version.hilt}"
-        const val core = "com.google.dagger:hilt-core:${Version.hilt}"
+        const val hiltComposeNavigation =
+            "androidx.hilt:hilt-navigation-compose:${Version.hiltComposeNavigation}"
+        const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Version.hilt}"
+        const val hiltAndroid = "com.google.dagger:hilt-android:${Version.hilt}"
     }
 
 
@@ -39,13 +44,15 @@ object Lib {
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
 
         const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
+        const val composeLifecycleRuntime =
+            "androidx.lifecycle:lifecycle-runtime-compose:${Version.composeLifecycleRuntime}"
+        const val composeNavigation =
+            "androidx.navigation:navigation-compose:${Version.composeNavigation}"
     }
 
 
     object Tests {
         const val junit = "junit:junit:${Version.junit}"
-        const val jupiter = "org.junit.jupiter:junit-jupiter-api:${Version.jupiter}"
-        const val runner = "androidx.test:runner:${Version.runner}"
     }
 
 
