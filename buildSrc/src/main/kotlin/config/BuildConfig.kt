@@ -4,7 +4,7 @@ object BuildConfig {
     const val MIN_SDK_VERSION = 24
     const val COMPILE_SDK_VERSION = 34
     const val TARGET_SDK_VERSION = 34
-    const val BUILD_TOOLS_VERSION = "33.0.2"
+    const val BUILD_TOOLS_VERSION = "34.0.0"
     const val COMPOSE_COMPILER_VERSION = "1.5.1"
     const val JDK_TOOLCHAIN_VERSION = 17
 

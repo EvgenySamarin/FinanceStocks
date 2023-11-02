@@ -6,6 +6,8 @@ import org.apache.commons.io.output.ByteArrayOutputStream
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -74,11 +76,19 @@ android {
 dependencies {
     implementation(Lib.Core.coreCtx)
     implementation(Lib.Core.composeActivity)
+    implementation(Lib.Core.composeLifecycleRuntime)
+    implementation(Lib.Core.composeNavigation)
+
+    implementation(Lib.Di.hiltAndroid)
+    implementation(Lib.Di.hiltComposeNavigation)
+    kapt(Lib.Di.hiltCompiler)
+
     implementation(platform(Lib.BomCompose.bomCompose))
     implementation(Lib.BomCompose.ui)
     implementation(Lib.BomCompose.uiGraphics)
     implementation(Lib.BomCompose.uiToolingPreview)
     implementation(Lib.BomCompose.material3)
+    implementation(Lib.BomCompose.materialWindowSize)
 
     testImplementation(Lib.Tests.junit)
 
