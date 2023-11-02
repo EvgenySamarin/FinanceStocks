@@ -5,9 +5,6 @@ object Lib {
         const val kotlin = "1.9.0"
 
         const val coroutinesAndroid = "1.7.3"
-        const val gson = "2.10.1"
-        const val retrofit = "2.9.0"
-        const val okHttpLoggingInterceptor = "4.11.0"
         const val coreKtx = "1.12.0"
 
         /* test */
@@ -37,11 +34,6 @@ object Lib {
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutinesAndroid}"
         const val coreCtx = "androidx.core:core-ktx:${Version.coreKtx}"
-        const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
-        const val okHttpLoggingInterceptor =
-            "com.squareup.okhttp3:logging-interceptor:${Version.okHttpLoggingInterceptor}"
-        const val gson = "com.google.code.gson:gson:${Version.gson}"
-        const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
 
         const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
         const val composeLifecycleRuntime =
