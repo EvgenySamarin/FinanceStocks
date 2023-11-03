@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "FinanceStocks"
 include(":app")
- 
+include(":domain")

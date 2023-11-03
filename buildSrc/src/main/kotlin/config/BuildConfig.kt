@@ -8,11 +8,9 @@ object BuildConfig {
     const val COMPOSE_COMPILER_VERSION = "1.5.1"
     const val JDK_TOOLCHAIN_VERSION = 17
 
-    // modules namespaces
-    const val APP = "ey.samarin.financestocks"
-
     object App {
         const val ID = "ey.samarin.financestocks"
+        const val NAMESPACE = "ey.samarin.financestocks"
         const val NAME = "FinanceStocks"
         const val VERSION_CODE = 1
 
@@ -32,6 +30,11 @@ object BuildConfig {
          * ```
          */
         const val VERSION_NAME = "0.1"
+    }
+
+    object Modules {
+        const val DOMAIN_NAMESPACE = "ey.samarin.financestocks.domain"
+        const val DOMAIN_PATH = ":domain"
     }
 
     object BuildType {
