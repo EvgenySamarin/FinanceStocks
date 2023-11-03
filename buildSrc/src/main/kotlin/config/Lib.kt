@@ -33,7 +33,7 @@ object Lib {
     object Core {
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutinesAndroid}"
-        const val coreCtx = "androidx.core:core-ktx:${Version.coreKtx}"
+        const val coreKotlinExt = "androidx.core:core-ktx:${Version.coreKtx}"
 
         const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
         const val composeLifecycleRuntime =

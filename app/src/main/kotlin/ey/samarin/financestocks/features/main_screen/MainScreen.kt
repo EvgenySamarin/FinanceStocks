@@ -4,6 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -50,7 +51,12 @@ fun MainScreenWatchPreview() {
 fun MainScreen(
     @PreviewParameter(MainUIStateProvider::class) state: MainUIState,
     windowSize: WindowSizeClass = WINDOWS_SIZE_EXPANDED,
+    onScreenLaunch: () -> Unit = {},
 ) {
+    LaunchedEffect(Unit) {
+        onScreenLaunch()
+    }
+
     when (windowSize.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             Text(text = state.title)

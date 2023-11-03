@@ -28,6 +28,7 @@ fun FinanceStocksApp(windowSize: WindowSizeClass) {
             MainScreen(
                 state = uiState,
                 windowSize = windowSize,
+                onScreenLaunch = mainViewModel::onScreenLaunch,
             )
         }
     }

@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    namespace = BuildConfig.APP
+    namespace = BuildConfig.App.NAMESPACE
     compileSdk = BuildConfig.COMPILE_SDK_VERSION
     buildToolsVersion = BuildConfig.BUILD_TOOLS_VERSION
 
@@ -74,7 +74,9 @@ android {
 }
 
 dependencies {
-    implementation(Lib.Core.coreCtx)
+    implementation(project(BuildConfig.Modules.DOMAIN_PATH))
+
+    implementation(Lib.Core.coreKotlinExt)
     implementation(Lib.Core.composeActivity)
     implementation(Lib.Core.composeLifecycleRuntime)
     implementation(Lib.Core.composeNavigation)
