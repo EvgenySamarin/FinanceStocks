@@ -24,3 +24,5 @@ rootProject.name = "FinanceStocks"
 include(":app")
 include(":domain")
 include(":data")
+include(":providers")
+include(":models")

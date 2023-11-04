@@ -8,6 +8,10 @@ object BuildConfig {
     const val COMPOSE_COMPILER_VERSION = "1.5.1"
     const val JDK_TOOLCHAIN_VERSION = 17
 
+    //For demonstrate prefer approach to switch between different api in different stages of development
+    const val BASE_API_URL_TEST = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/"
+    const val BASE_API_URL_PROD = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/"
+
     object App {
         const val ID = "ey.samarin.financestocks"
         const val NAMESPACE = "ey.samarin.financestocks"
@@ -37,6 +41,10 @@ object BuildConfig {
         const val DOMAIN_PATH = ":domain"
         const val DATA_NAMESPACE = "ey.samarin.data"
         const val DATA_PATH = ":data"
+        const val PROVIDERS_NAMESPACE = "ey.samarin.providers"
+        const val PROVIDERS_PATH = ":providers"
+        const val MODELS_NAMESPACE = "ey.samarin.models"
+        const val MODELS_PATH = ":models"
     }
 
     object BuildType {

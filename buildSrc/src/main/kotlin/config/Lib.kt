@@ -4,10 +4,13 @@ object Lib {
     object Version {
         const val kotlin = "1.9.0"
 
-        const val coroutinesAndroid = "1.7.3"
+        const val coroutines = "1.7.3"
         const val coreKtx = "1.12.0"
 
-        /* test */
+        const val gson = "2.10.1"
+        const val retrofit = "2.9.0"
+        const val okHttpLoggingInterceptor = "4.11.0"
+
         const val junit = "4.13.2"
         const val runner = "1.1.0"
 
@@ -17,7 +20,6 @@ object Lib {
         const val composeActivity = "1.8.0"
         const val composeLifecycleRuntime = "2.6.2"
         const val composeNavigation = "2.7.5"
-
         const val bomCompose = "2023.08.00"
     }
 
@@ -32,8 +34,10 @@ object Lib {
 
 
     object Core {
-        const val coroutines =
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutinesAndroid}"
+        const val coroutinesCore =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutines}"
+        const val coroutinesAndroid =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
         const val coreKotlinExt = "androidx.core:core-ktx:${Version.coreKtx}"
 
         const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
@@ -41,6 +45,15 @@ object Lib {
             "androidx.lifecycle:lifecycle-runtime-compose:${Version.composeLifecycleRuntime}"
         const val composeNavigation =
             "androidx.navigation:navigation-compose:${Version.composeNavigation}"
+    }
+
+
+    object Network {
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
+        const val okHttpLoggingInterceptor =
+            "com.squareup.okhttp3:logging-interceptor:${Version.okHttpLoggingInterceptor}"
+        const val gson = "com.google.code.gson:gson:${Version.gson}"
+        const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
     }
 
 

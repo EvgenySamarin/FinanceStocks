@@ -1,19 +1,18 @@
 import config.BuildConfig
-import config.Lib
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
 }
 
 android {
+    namespace = BuildConfig.Modules.MODELS_NAMESPACE
     compileSdk = BuildConfig.COMPILE_SDK_VERSION
-    namespace = BuildConfig.Modules.DOMAIN_NAMESPACE
     buildToolsVersion = BuildConfig.BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdk = BuildConfig.MIN_SDK_VERSION
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -35,13 +34,4 @@ android {
     kotlin {
         jvmToolchain(jdkVersion = BuildConfig.JDK_TOOLCHAIN_VERSION)
     }
-}
-
-dependencies {
-    implementation(project(BuildConfig.Modules.DATA_PATH))
-
-    implementation(Lib.Di.hiltAndroid)
-    kapt(Lib.Di.hiltCompiler)
-
-    testImplementation(Lib.Tests.junit)
 }
