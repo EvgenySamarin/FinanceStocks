@@ -27,6 +27,7 @@ object Lib {
             "androidx.hilt:hilt-navigation-compose:${Version.hiltComposeNavigation}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Version.hilt}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Version.hilt}"
+        const val hiltCore = "com.google.dagger:hilt-core:${Version.hilt}"
     }
 
 

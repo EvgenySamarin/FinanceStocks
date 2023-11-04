@@ -13,7 +13,7 @@ import ey.samarin.domain.stocks.GetStocksUseCaseImpl
 @InstallIn(ViewModelComponent::class)
 abstract class DomainBindsModule {
     @Binds
-    abstract fun bindGetStocksUseCase(
+    internal abstract fun bindGetStocksUseCase(
         getStocksUseCaseImpl: GetStocksUseCaseImpl,
     ): GetStocksUseCase
 

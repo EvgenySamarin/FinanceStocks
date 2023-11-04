@@ -1,4 +1,5 @@
 import config.BuildConfig
+import config.BuildConfig.Modules.DATA_NAMESPACE
 import config.Lib
 
 plugins {
@@ -9,11 +10,12 @@ plugins {
 
 android {
     compileSdk = BuildConfig.COMPILE_SDK_VERSION
-    namespace = BuildConfig.Modules.DOMAIN_NAMESPACE
+    namespace = DATA_NAMESPACE
     buildToolsVersion = BuildConfig.BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdk = BuildConfig.MIN_SDK_VERSION
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -38,9 +40,7 @@ android {
 }
 
 dependencies {
-    implementation(project(BuildConfig.Modules.DATA_PATH))
-
-    implementation(Lib.Di.hiltAndroid)
+    implementation(Lib.Di.hiltCore)
     kapt(Lib.Di.hiltCompiler)
     testImplementation(Lib.Tests.junit)
 }

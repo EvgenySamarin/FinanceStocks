@@ -1,12 +1,12 @@
 package ey.samarin.domain.stocks
 
+import ey.samarin.data.repository.FinanceRepository
 import javax.inject.Inject
 
-class GetStocksUseCaseImpl @Inject constructor() : GetStocksUseCase {
-    override suspend fun invoke(): String {
-        // TODO [202311308]: implement use case logic here
-        return "string from domain"
-    }
+internal class GetStocksUseCaseImpl @Inject constructor(
+    private val financeRepository: FinanceRepository,
+) : GetStocksUseCase {
+    override suspend fun invoke(): String = financeRepository.getSocks()
 }
 
 interface GetStocksUseCase {
