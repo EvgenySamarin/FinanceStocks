@@ -33,8 +33,10 @@ object BuildConfig {
     }
 
     object Modules {
-        const val DOMAIN_NAMESPACE = "ey.samarin.financestocks.domain"
+        const val DOMAIN_NAMESPACE = "ey.samarin.domain"
         const val DOMAIN_PATH = ":domain"
+        const val DATA_NAMESPACE = "ey.samarin.data"
+        const val DATA_PATH = ":data"
     }
 
     object BuildType {
