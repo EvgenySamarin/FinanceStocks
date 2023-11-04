@@ -8,16 +8,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -83,6 +86,7 @@ fun MainScreen(
     windowSize: WindowSizeClass = WINDOWS_SIZE_MEDIUM,
     onScreenLaunch: () -> Unit = {},
     onSearchTextChange: (String) -> Unit = {},
+    onRepeatClick: () -> Unit = {},
 ) {
     LaunchedEffect(Unit) {
         onScreenLaunch()
@@ -101,9 +105,21 @@ fun MainScreen(
                     WindowWidthSizeClass.Medium -> Column(modifier = Modifier.padding(16.dp)) {
                         TextField(
                             value = state.searchText,
-                            onValueChange = { },
+                            onValueChange = { onSearchTextChange(it) },
                             modifier = Modifier.fillMaxWidth(),
+                            colors = TextFieldDefaults.colors(
+                                unfocusedContainerColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent,
+                            ),
                         )
+                        Button(
+                            onClick = { onRepeatClick() },
+                            modifier = Modifier
+                                .padding(top = 8.dp)
+                                .fillMaxWidth(),
+                        ) {
+                            Text(text = "Repeat")
+                        }
                         StocksListContent(state.stocksPreview)
                     }
 
@@ -111,7 +127,12 @@ fun MainScreen(
                         Column {
                             TextField(
                                 value = state.searchText,
-                                onValueChange = { onSearchTextChange(it) },
+                                onValueChange = { },
+                                modifier = Modifier.fillMaxWidth(),
+                                colors = TextFieldDefaults.colors(
+                                    unfocusedContainerColor = Color.Transparent,
+                                    disabledContainerColor = Color.Transparent,
+                                ),
                             )
                         }
                         StocksListContent(state.stocksPreview)
