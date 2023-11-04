@@ -114,19 +114,21 @@ class NetworkModule {
             )
             .addInterceptor(logging)
             .addInterceptor { chain ->
-                chain.proceed(
-                    request = chain.request().newBuilder()
-                        .addHeader(
-                            name = "X-RapidAPI-Key",
-                            // TODO [202311309]: hide sensitive data
-                            value = "4af903ee4cmshad6f9effd6e7fd2p175deejsn394a902975db"
-                        )
-                        .addHeader(
-                            name = "X-RapidAPI-Host",
-                            value = "yahoo-finance15.p.rapidapi.com"
-                        )
-                        .build()
-                )
+                val origin = chain.request()
+
+                val updatedRequest = origin.newBuilder()
+                    .addHeader(
+                        name = "X-RapidAPI-Key",
+                        // TODO [202311309]: hide sensitive data
+                        value = "7ab0517ebamsh354f040b6a7611bp168b39jsn458e440fa95f"
+                    )
+                    .addHeader(
+                        name = "X-RapidAPI-Host",
+                        value = "yahoo-finance15.p.rapidapi.com"
+                    )
+                    .build()
+
+                chain.proceed(request = updatedRequest)
             }
         return builder.build()
     }

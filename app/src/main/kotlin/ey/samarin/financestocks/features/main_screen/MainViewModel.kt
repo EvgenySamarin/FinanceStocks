@@ -23,6 +23,10 @@ class MainViewModel @Inject constructor(
     val uiState: StateFlow<MainUIState> = _uiState
 
     fun onScreenLaunch() {
+        obtainStocksPreview()
+    }
+
+    private fun obtainStocksPreview() {
         launchAsync(exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             Log.e("POINT", "onScreenLaunch: ", throwable)
         }) {
@@ -50,6 +54,14 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(context) {
             block()
         }
+    }
+
+    fun onSearchTextChange(newSearchString: String) = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(searchText = newSearchString))
+    }
+
+    fun onRepeatClick() {
+        obtainStocksPreview()
     }
 
 }

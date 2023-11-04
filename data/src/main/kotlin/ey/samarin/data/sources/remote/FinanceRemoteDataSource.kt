@@ -17,7 +17,7 @@ internal class FinanceRemoteDataSourceImpl @Inject constructor(
     override suspend fun getMostActivesStocks(): List<StockPreview> {
         return withContext(asyncCoroutineContext) {
             stocksApi.getMostActivesStocks()
-                .quotes
+                .body
                 .map {
                     StockPreview(
                         symbol = it.symbol,

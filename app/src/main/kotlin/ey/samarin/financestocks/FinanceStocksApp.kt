@@ -29,6 +29,8 @@ fun FinanceStocksApp(windowSize: WindowSizeClass) {
                 state = uiState,
                 windowSize = windowSize,
                 onScreenLaunch = mainViewModel::onScreenLaunch,
+                onSearchTextChange = mainViewModel::onSearchTextChange,
+                onRepeatClick = mainViewModel::onRepeatClick,
             )
         }
     }

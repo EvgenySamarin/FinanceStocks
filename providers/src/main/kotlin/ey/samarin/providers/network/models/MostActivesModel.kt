@@ -4,24 +4,37 @@ package ey.samarin.providers.network.models
 import com.google.gson.annotations.SerializedName
 
 data class MostActivesModel(
-    @SerializedName("count") val count: Int,
-    @SerializedName("description") val description: String,
-    @SerializedName("quotes") val quotes: List<Quote>,
-    @SerializedName("start") val start: Int,
-    @SerializedName("total") val total: Int
+    @SerializedName("body") val body: List<Body>,
+    @SerializedName("meta") val meta: Meta,
 )
 
-data class Quote(
-    @SerializedName("ask") val ask: Int,
+data class Meta(
+    @SerializedName("copywrite") val copywrite: String,
+    @SerializedName("count") val count: Int,
+    @SerializedName("description") val description: String,
+    @SerializedName("offset") val offset: Int,
+    @SerializedName("processedTime") val processedTime: String,
+    @SerializedName("status") val status: Int,
+    @SerializedName("total") val total: Int,
+    @SerializedName("version") val version: String
+)
+
+data class Body(
+    @SerializedName("ask") val ask: Double,
     @SerializedName("askSize") val askSize: Int,
+    @SerializedName("averageAnalystRating") val averageAnalystRating: String,
     @SerializedName("averageDailyVolume10Day") val averageDailyVolume10Day: Int,
     @SerializedName("averageDailyVolume3Month") val averageDailyVolume3Month: Int,
-    @SerializedName("bid") val bid: Int,
+    @SerializedName("bid") val bid: Double,
     @SerializedName("bidSize") val bidSize: Int,
     @SerializedName("bookValue") val bookValue: Double,
+    @SerializedName("cryptoTradeable") val cryptoTradeable: Boolean,
     @SerializedName("currency") val currency: String,
+    @SerializedName("customPriceAlertConfidence") val customPriceAlertConfidence: String,
     @SerializedName("displayName") val displayName: String,
     @SerializedName("dividendDate") val dividendDate: Int,
+    @SerializedName("dividendRate") val dividendRate: Double,
+    @SerializedName("dividendYield") val dividendYield: Double,
     @SerializedName("earningsTimestamp") val earningsTimestamp: Int,
     @SerializedName("earningsTimestampEnd") val earningsTimestampEnd: Int,
     @SerializedName("earningsTimestampStart") val earningsTimestampStart: Int,
@@ -36,6 +49,7 @@ data class Quote(
     @SerializedName("fiftyDayAverage") val fiftyDayAverage: Double,
     @SerializedName("fiftyDayAverageChange") val fiftyDayAverageChange: Double,
     @SerializedName("fiftyDayAverageChangePercent") val fiftyDayAverageChangePercent: Double,
+    @SerializedName("fiftyTwoWeekChangePercent") val fiftyTwoWeekChangePercent: Double,
     @SerializedName("fiftyTwoWeekHigh") val fiftyTwoWeekHigh: Double,
     @SerializedName("fiftyTwoWeekHighChange") val fiftyTwoWeekHighChange: Double,
     @SerializedName("fiftyTwoWeekHighChangePercent") val fiftyTwoWeekHighChangePercent: Double,
@@ -50,13 +64,14 @@ data class Quote(
     @SerializedName("gmtOffSetMilliseconds") val gmtOffSetMilliseconds: Int,
     @SerializedName("ipoExpectedDate") val ipoExpectedDate: String,
     @SerializedName("language") val language: String,
+    @SerializedName("lastClosePriceToNNWCPerShare") val lastClosePriceToNNWCPerShare: Double,
+    @SerializedName("lastCloseTevEbitLtm") val lastCloseTevEbitLtm: Double,
     @SerializedName("longName") val longName: String,
     @SerializedName("market") val market: String,
     @SerializedName("marketCap") val marketCap: Long,
     @SerializedName("marketState") val marketState: String,
     @SerializedName("messageBoardId") val messageBoardId: String,
     @SerializedName("nameChangeDate") val nameChangeDate: String,
-    @SerializedName("newListingDate") val newListingDate: String,
     @SerializedName("postMarketChange") val postMarketChange: Double,
     @SerializedName("postMarketChangePercent") val postMarketChangePercent: Double,
     @SerializedName("postMarketPrice") val postMarketPrice: Double,
@@ -89,5 +104,6 @@ data class Quote(
     @SerializedName("triggerable") val triggerable: Boolean,
     @SerializedName("twoHundredDayAverage") val twoHundredDayAverage: Double,
     @SerializedName("twoHundredDayAverageChange") val twoHundredDayAverageChange: Double,
-    @SerializedName("twoHundredDayAverageChangePercent") val twoHundredDayAverageChangePercent: Double
+    @SerializedName("twoHundredDayAverageChangePercent") val twoHundredDayAverageChangePercent: Double,
+    @SerializedName("typeDisp") val typeDisp: String
 )
