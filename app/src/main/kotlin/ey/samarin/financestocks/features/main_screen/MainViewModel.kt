@@ -1,9 +1,15 @@
 package ey.samarin.financestocks.features.main_screen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ey.samarin.domain.stocks.GetStocksUseCase
+import ey.samarin.models.StockPreview
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -13,22 +19,42 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getStocksUseCase: GetStocksUseCase,
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(MainUIState.EMPTY)
+    private val _uiState = MutableStateFlow(MainUIState())
     val uiState: StateFlow<MainUIState> = _uiState
 
     fun onScreenLaunch() {
-        viewModelScope.launch {
-            val stocksData = getStocksUseCase()
+        launchAsync(exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            Log.e("POINT", "onScreenLaunch: ", throwable)
+        }) {
+            val stocksPreview = getStocksUseCase()
 
-            _uiState.emit(MainUIState(title = stocksData))
+            _uiState.emit(
+                MainUIState(
+                    stocksPreview = stocksPreview,
+                )
+            )
         }
     }
+
+    private fun launchAsync(
+        dispatcher: CoroutineDispatcher = Dispatchers.IO,
+        exceptionHandler: CoroutineExceptionHandler? = null,
+        block: suspend CoroutineScope.() -> Unit,
+    ) {
+        val context = (viewModelScope.coroutineContext + dispatcher).let { context ->
+            exceptionHandler?.let {
+                it + context
+            } ?: context
+        }
+
+        viewModelScope.launch(context) {
+            block()
+        }
+    }
+
 }
 
 data class MainUIState(
-    val title: String
-) {
-    companion object {
-        val EMPTY = MainUIState(title = "STUB")
-    }
-}
+    val searchText: String = "",
+    val stocksPreview: List<StockPreview> = emptyList(),
+)

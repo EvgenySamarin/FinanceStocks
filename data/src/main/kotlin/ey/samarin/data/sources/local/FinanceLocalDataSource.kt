@@ -1,25 +1,26 @@
 package ey.samarin.data.sources.local
 
+import ey.samarin.models.StockPreview
 import javax.inject.Inject
 
 
 internal class FinanceLocalDataSourceImpl @Inject constructor(
 
 ) : FinanceLocalDataSource {
+    // TODO [202311309]: change this to more efficient cache
+    private var stocksInMemoryCache: List<StockPreview> = emptyList()
 
-    private var stocksInMemoryCache: String = ""
-
-    override fun updateStocksCache(stocks: String) {
-        stocksInMemoryCache = stocks
+    override fun updateStocksPreviewCache(stocksPreview: List<StockPreview>) {
+        stocksInMemoryCache = stocksPreview
     }
 
-    override fun getCachedStocks(): String = stocksInMemoryCache
+    override fun getCachedStocksPreview(): List<StockPreview> = stocksInMemoryCache
 }
 
 /**
  * To cache handling
  */
 interface FinanceLocalDataSource {
-    fun getCachedStocks(): String
-    fun updateStocksCache(stocks: String)
+    fun getCachedStocksPreview(): List<StockPreview>
+    fun updateStocksPreviewCache(stocksPreview: List<StockPreview>)
 }

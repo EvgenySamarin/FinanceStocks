@@ -75,7 +75,9 @@ android {
 
 dependencies {
     implementation(project(BuildConfig.Modules.DOMAIN_PATH))
+    api(project(BuildConfig.Modules.MODELS_PATH))
 
+    implementation(Lib.Core.coroutinesAndroid)
     implementation(Lib.Core.coreKotlinExt)
     implementation(Lib.Core.composeActivity)
     implementation(Lib.Core.composeLifecycleRuntime)

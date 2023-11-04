@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FinanceStocks</string>
+    <string name="main_screen_title">Main screen</string>
 </resources>

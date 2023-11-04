@@ -8,6 +8,7 @@ import ey.samarin.data.sources.local.FinanceLocalDataSource
 import ey.samarin.data.sources.local.FinanceLocalDataSourceImpl
 import ey.samarin.data.sources.remote.FinanceRemoteDataSource
 import ey.samarin.data.sources.remote.FinanceRemoteDataSourceImpl
+import ey.samarin.providers.network.StocksApi
 import javax.inject.Singleton
 
 
@@ -16,7 +17,11 @@ import javax.inject.Singleton
 class DataSourceModule {
     @Provides
     @Singleton
-    fun provideFinanceRemoteDataSource(): FinanceRemoteDataSource = FinanceRemoteDataSourceImpl()
+    fun provideFinanceRemoteDataSource(
+        stocksApi: StocksApi,
+    ): FinanceRemoteDataSource = FinanceRemoteDataSourceImpl(
+        stocksApi = stocksApi,
+    )
 
     @Provides
     @Singleton
