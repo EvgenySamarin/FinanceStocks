@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -19,8 +20,14 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getStocksUseCase: GetStocksUseCase,
 ) : ViewModel() {
+
+    companion object {
+        const val DEFAULT_REPEAT_REQUEST_DELAY = 8000L
+    }
+
     private val remotePreviewState = MutableStateFlow<List<StockPreview>>(emptyList())
     private val currentSearchState = MutableStateFlow("")
+    private val isCanRepeatRequest = MutableStateFlow(true)
     private val _uiState = MutableStateFlow(MainUIState())
     val uiState: StateFlow<MainUIState> = _uiState
 
@@ -28,14 +35,18 @@ class MainViewModel @Inject constructor(
         obtainStocksPreview()
     }
 
-    private fun obtainStocksPreview() {
-        launchAsync(exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+    private fun obtainStocksPreview() = launchWithRepetition(
+        isCanRepeat = { isCanRepeatRequest.value },
+        repeatDelay = DEFAULT_REPEAT_REQUEST_DELAY,
+        exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             // TODO [202311309]: here we can handle errors
             Log.e("POINT", "onScreenLaunch: ", throwable)
-        }) {
-            remotePreviewState.emit(getStocksUseCase())
-            updateUiState()
-        }
+            //no need to repeat broken requests
+            isCanRepeatRequest.value = false
+        },
+    ) {
+        remotePreviewState.emit(getStocksUseCase())
+        updateUiState()
     }
 
     private fun updateUiState() = viewModelScope.launch {
@@ -53,7 +64,9 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    private fun launchAsync(
+    private fun launchWithRepetition(
+        isCanRepeat: () -> Boolean,
+        repeatDelay: Long,
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
         exceptionHandler: CoroutineExceptionHandler? = null,
         block: suspend CoroutineScope.() -> Unit,
@@ -65,7 +78,12 @@ class MainViewModel @Inject constructor(
         }
 
         viewModelScope.launch(context) {
-            block()
+            while (isCanRepeat()) {
+                val timeBeforeRequest = System.currentTimeMillis()
+                block()
+                val timeOfRequest = System.currentTimeMillis() - timeBeforeRequest
+                delay(repeatDelay - timeOfRequest)
+            }
         }
     }
 
