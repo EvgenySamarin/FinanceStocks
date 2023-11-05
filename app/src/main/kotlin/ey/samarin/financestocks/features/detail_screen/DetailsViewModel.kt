@@ -1,6 +1,5 @@
 package ey.samarin.financestocks.features.detail_screen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,8 +31,9 @@ class DetailsViewModel @Inject constructor(
 
     private fun obtainStocksProfile(stockSymbol: String) = launchAsync(
         exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            // TODO [202311309]: here we can handle errors, log for example
-            Log.e("DetailsViewModel", "obtainStocksPreview: ", throwable)
+            _uiState.tryEmit(
+                DetailUIState(errorText = "Remote data sheet was changed, try to pick other stock")
+            )
         },
     ) {
         val stockProfile = getStockProfile(symbol = stockSymbol)
@@ -69,4 +69,5 @@ data class DetailUIState(
     val sector: String = "",
     val address: String = "",
     val longBusinessSummary: String = "",
+    val errorText: String = "",
 )
