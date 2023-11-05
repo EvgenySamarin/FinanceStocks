@@ -45,22 +45,24 @@ fun FinanceStocksApp(windowSize: WindowSizeClass) {
         composable(
             route = Routes.Detail.route,
             arguments = listOf(navArgument(stockSymbol) { type = NavType.StringType })
-        ) {
-            FragmentInComposeExample()
+        ) { backStackEntry ->
+            val stockSymbol = backStackEntry.arguments?.getString(stockSymbol)
+            FragmentInComposeExample(stockSymbol = stockSymbol)
         }
     }
 }
 
 @Composable
-fun FragmentInComposeExample() {
+fun FragmentInComposeExample(stockSymbol: String?) {
     AndroidViewBinding(factory = FragmentDetailsContainerBinding::inflate) {
         val fragment = fragmentContainerView.getFragment<DetailsFragment>()
+        fragment.setNavigationParams(stockSymbol)
     }
 }
 
 sealed class Routes(val route: String) {
     data object Main : Routes(route = "Main")
     data object Detail : Routes(route = "Detail/{stockSymbol}") {
-        val stockSymbol: String = "stockSymbol"
+        const val stockSymbol: String = "stockSymbol"
     }
 }

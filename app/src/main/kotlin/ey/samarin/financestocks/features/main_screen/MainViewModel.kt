@@ -36,12 +36,12 @@ class MainViewModel @Inject constructor(
         obtainStocksPreview()
     }
 
-    private fun obtainStocksPreview() = launchWithRepetition(
+    private fun obtainStocksPreview() = launchAsyncWithRepetition(
         isCanRepeat = { isCanRepeatRequest.value },
         repeatDelay = DEFAULT_REPEAT_REQUEST_DELAY,
         exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            // TODO [202311309]: here we can handle errors
-            Log.e("POINT", "onScreenLaunch: ", throwable)
+            // TODO [202311309]: here we can handle errors, log for example
+            Log.e("MainViewModel", "obtainStocksPreview: ", throwable)
             //no need to repeat broken requests
             isCanRepeatRequest.value = false
         },
@@ -65,7 +65,7 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    private fun launchWithRepetition(
+    private fun launchAsyncWithRepetition(
         isCanRepeat: () -> Boolean,
         repeatDelay: Long,
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
@@ -79,7 +79,6 @@ class MainViewModel @Inject constructor(
         }
 
         viewModelScope.launch(context) {
-            // TODO [202311309]: раскоментить, когда будет готова логика повтора запросов
             while (isCanRepeat()) {
                 val timeBeforeRequest = System.currentTimeMillis()
                 block()
