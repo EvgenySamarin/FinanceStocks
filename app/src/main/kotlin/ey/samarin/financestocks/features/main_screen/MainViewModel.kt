@@ -19,6 +19,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getStocksUseCase: GetStocksUseCase,
 ) : ViewModel() {
+    private val remotePreviewState = MutableStateFlow<List<StockPreview>>(emptyList())
+    private val currentSearchState = MutableStateFlow("")
     private val _uiState = MutableStateFlow(MainUIState())
     val uiState: StateFlow<MainUIState> = _uiState
 
@@ -28,16 +30,27 @@ class MainViewModel @Inject constructor(
 
     private fun obtainStocksPreview() {
         launchAsync(exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            // TODO [202311309]: here we can handle errors
             Log.e("POINT", "onScreenLaunch: ", throwable)
         }) {
-            val stocksPreview = getStocksUseCase()
-
-            _uiState.emit(
-                MainUIState(
-                    stocksPreview = stocksPreview,
-                )
-            )
+            remotePreviewState.emit(getStocksUseCase())
+            updateUiState()
         }
+    }
+
+    private fun updateUiState() = viewModelScope.launch {
+        val searchText = currentSearchState.value
+
+        _uiState.emit(
+            MainUIState(
+                searchText = searchText,
+                stocksPreview = remotePreviewState.value.filter { preview ->
+                    setOf(preview.symbol, preview.longName).any { field ->
+                        field.contains(searchText, ignoreCase = true)
+                    }
+                }
+            )
+        )
     }
 
     private fun launchAsync(
@@ -57,11 +70,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun onSearchTextChange(newSearchString: String) = viewModelScope.launch {
-        _uiState.emit(uiState.value.copy(searchText = newSearchString))
-    }
-
-    fun onRepeatClick() {
-        obtainStocksPreview()
+        currentSearchState.emit(newSearchString)
+        updateUiState()
     }
 
 }

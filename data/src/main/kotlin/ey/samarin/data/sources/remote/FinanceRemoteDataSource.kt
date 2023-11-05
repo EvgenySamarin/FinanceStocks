@@ -21,6 +21,7 @@ internal class FinanceRemoteDataSourceImpl @Inject constructor(
                 .map {
                     StockPreview(
                         symbol = it.symbol,
+                        longName = it.longName,
                     )
                 }
         }

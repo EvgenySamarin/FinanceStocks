@@ -30,12 +30,18 @@ fun FinanceStocksApp(windowSize: WindowSizeClass) {
                 windowSize = windowSize,
                 onScreenLaunch = mainViewModel::onScreenLaunch,
                 onSearchTextChange = mainViewModel::onSearchTextChange,
-                onRepeatClick = mainViewModel::onRepeatClick,
+                onStockPreviewTap = {
+//                    navController.navigate(Routes.Main.route + "/${it.symbol}")
+                },
             )
+        }
+        composable(Routes.Detail.route) {
+
         }
     }
 }
 
 sealed class Routes(val route: String) {
     data object Main : Routes(route = "Main")
+    data object Detail : Routes(route = "Detail")
 }

@@ -1,9 +1,28 @@
 package ey.samarin.financestocks.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+
+fun getAdaptiveLabelByHeight(heightSizeClass: WindowHeightSizeClass): TextStyle {
+    return when (heightSizeClass) {
+        WindowHeightSizeClass.Expanded -> Typography.labelLarge
+        WindowHeightSizeClass.Medium -> Typography.labelMedium
+        WindowHeightSizeClass.Compact -> Typography.labelSmall
+        else -> Typography.labelMedium
+    }
+}
+
+fun getAdaptiveBodyByHeight(heightSizeClass: WindowHeightSizeClass): TextStyle {
+    return when (heightSizeClass) {
+        WindowHeightSizeClass.Expanded -> Typography.bodyLarge
+        WindowHeightSizeClass.Medium -> Typography.bodyMedium
+        WindowHeightSizeClass.Compact -> Typography.bodySmall
+        else -> Typography.bodyMedium
+    }
+}
 
 val Typography = Typography(
     headlineLarge = TextStyle(
