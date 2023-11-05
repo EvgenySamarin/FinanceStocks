@@ -122,7 +122,7 @@ proposed features (and known issues).
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@EvgenySamarin](https://twitter.com/EvgenySamarin) - ey.samarin@gmail.com
+Twitter (X) / [@EvgenySamarin](https://twitter.com/EvgenySamarin) - ey.samarin@gmail.com
 
 Project
 Link: [https://github.com/EvgenySamarin/FinanceStocks](https://github.com/EvgenySamarin/FinanceStocks)
