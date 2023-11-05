@@ -3,11 +3,17 @@ package ey.samarin.financestocks
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import ey.samarin.financestocks.Routes.Detail.stockSymbol
+import ey.samarin.financestocks.databinding.FragmentDetailsContainerBinding
+import ey.samarin.financestocks.features.detail_screen.DetailsFragment
 import ey.samarin.financestocks.features.main_screen.MainScreen
 import ey.samarin.financestocks.features.main_screen.MainViewModel
 
@@ -31,17 +37,30 @@ fun FinanceStocksApp(windowSize: WindowSizeClass) {
                 onScreenLaunch = mainViewModel::onScreenLaunch,
                 onSearchTextChange = mainViewModel::onSearchTextChange,
                 onStockPreviewTap = {
-//                    navController.navigate(Routes.Main.route + "/${it.symbol}")
+                    mainViewModel.onStockPreviewTap()
+                    navController.navigate(Routes.Detail.route.replace("{$stockSymbol}", it.symbol))
                 },
             )
         }
-        composable(Routes.Detail.route) {
-
+        composable(
+            route = Routes.Detail.route,
+            arguments = listOf(navArgument(stockSymbol) { type = NavType.StringType })
+        ) {
+            FragmentInComposeExample()
         }
+    }
+}
+
+@Composable
+fun FragmentInComposeExample() {
+    AndroidViewBinding(factory = FragmentDetailsContainerBinding::inflate) {
+        val fragment = fragmentContainerView.getFragment<DetailsFragment>()
     }
 }
 
 sealed class Routes(val route: String) {
     data object Main : Routes(route = "Main")
-    data object Detail : Routes(route = "Detail")
+    data object Detail : Routes(route = "Detail/{stockSymbol}") {
+        val stockSymbol: String = "stockSymbol"
+    }
 }

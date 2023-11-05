@@ -32,6 +32,7 @@ class MainViewModel @Inject constructor(
     val uiState: StateFlow<MainUIState> = _uiState
 
     fun onScreenLaunch() {
+        isCanRepeatRequest.value = true
         obtainStocksPreview()
     }
 
@@ -78,6 +79,7 @@ class MainViewModel @Inject constructor(
         }
 
         viewModelScope.launch(context) {
+            // TODO [202311309]: раскоментить, когда будет готова логика повтора запросов
             while (isCanRepeat()) {
                 val timeBeforeRequest = System.currentTimeMillis()
                 block()
@@ -90,6 +92,10 @@ class MainViewModel @Inject constructor(
     fun onSearchTextChange(newSearchString: String) = viewModelScope.launch {
         currentSearchState.emit(newSearchString)
         updateUiState()
+    }
+
+    fun onStockPreviewTap() = viewModelScope.launch {
+        isCanRepeatRequest.emit(false)
     }
 
 }

@@ -17,6 +17,9 @@ object Lib {
         const val hilt = "2.48"
         const val hiltComposeNavigation = "1.1.0"
 
+        const val viewMaterial = "1.10.0"
+        const val fragmentKtx = "1.6.2"
+
         const val composeActivity = "1.8.0"
         const val composeLifecycleRuntime = "2.6.2"
         const val composeNavigation = "2.7.5"
@@ -47,6 +50,11 @@ object Lib {
             "androidx.navigation:navigation-compose:${Version.composeNavigation}"
     }
 
+    object LegacyUI {
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:${Version.fragmentKtx}"
+        const val viewMaterial = "com.google.android.material:material:${Version.viewMaterial}"
+    }
+
 
     object Network {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
@@ -65,6 +73,7 @@ object Lib {
     object BomCompose {
         const val bomCompose = "androidx.compose:compose-bom:${Version.bomCompose}"
         const val ui = "androidx.compose.ui:ui"
+        const val uiViewBinding = "androidx.compose.ui:ui-viewbinding"
         const val uiGraphics = "androidx.compose.ui:ui-graphics"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         const val material3 = "androidx.compose.material3:material3"

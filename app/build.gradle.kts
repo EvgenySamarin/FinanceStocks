@@ -62,6 +62,7 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = BuildConfig.COMPOSE_COMPILER_VERSION
@@ -85,14 +86,22 @@ dependencies {
 
     implementation(Lib.Di.hiltAndroid)
     implementation(Lib.Di.hiltComposeNavigation)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     kapt(Lib.Di.hiltCompiler)
 
     implementation(platform(Lib.BomCompose.bomCompose))
     implementation(Lib.BomCompose.ui)
     implementation(Lib.BomCompose.uiGraphics)
     implementation(Lib.BomCompose.uiToolingPreview)
+    implementation(Lib.BomCompose.uiViewBinding)
     implementation(Lib.BomCompose.material3)
     implementation(Lib.BomCompose.materialWindowSize)
+
+    //highly discouraged uses the same time the material3 and material, added because of requirements
+    implementation(Lib.LegacyUI.viewMaterial)
+    implementation(Lib.LegacyUI.fragmentKtx)
 
     testImplementation(Lib.Tests.junit)
 
