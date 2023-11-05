@@ -119,7 +119,6 @@ class NetworkModule {
                 val updatedRequest = origin.newBuilder()
                     .addHeader(
                         name = "X-RapidAPI-Key",
-                        // TODO [202311309]: hide sensitive data
                         value = "7ab0517ebamsh354f040b6a7611bp168b39jsn458e440fa95f"
                     )
                     .addHeader(

@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
         isCanRepeat = { isCanRepeatRequest.value },
         repeatDelay = DEFAULT_REPEAT_REQUEST_DELAY,
         exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            // TODO [202311309]: here we can handle errors, log for example
+            //ere we can handle errors, log for example
             Log.e("MainViewModel", "obtainStocksPreview: ", throwable)
             //no need to repeat broken requests
             isCanRepeatRequest.value = false

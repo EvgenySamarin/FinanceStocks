@@ -7,7 +7,7 @@ import javax.inject.Inject
 internal class FinanceLocalDataSourceImpl @Inject constructor(
 
 ) : FinanceLocalDataSource {
-    // TODO [202311309]: change this to more efficient cache
+    //here can be used Room or SharedPreferences etc
     private var stocksInMemoryCache: List<StockPreview> = emptyList()
 
     override fun updateStocksPreviewCache(stocksPreview: List<StockPreview>) {
