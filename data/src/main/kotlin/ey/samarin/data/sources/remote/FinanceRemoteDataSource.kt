@@ -1,6 +1,7 @@
 package ey.samarin.data.sources.remote
 
 import ey.samarin.models.StockPreview
+import ey.samarin.models.StockProfile
 import ey.samarin.providers.network.StocksApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -14,8 +15,8 @@ internal class FinanceRemoteDataSourceImpl @Inject constructor(
 ) : FinanceRemoteDataSource {
 
     private val asyncCoroutineContext: CoroutineContext = Dispatchers.IO + SupervisorJob()
-    override suspend fun getMostActivesStocks(): List<StockPreview> {
-        return withContext(asyncCoroutineContext) {
+    override suspend fun getMostActivesStocks(): List<StockPreview> =
+        withContext(asyncCoroutineContext) {
             stocksApi.getMostActivesStocks()
                 .body
                 .map {
@@ -25,7 +26,17 @@ internal class FinanceRemoteDataSourceImpl @Inject constructor(
                     )
                 }
         }
-    }
+
+    override suspend fun getStockProfile(symbol: String): StockProfile =
+        stocksApi.getSocksProfile(stockSymbol = symbol)
+            .body
+            .let {
+                StockProfile(
+                    sector = it.sector,
+                    combinedAddress = it.address1 + it.city + it.state + it.zip + it.country,
+                    longBusinessSummary = it.longBusinessSummary,
+                )
+            }
 }
 
 /**
@@ -33,4 +44,6 @@ internal class FinanceRemoteDataSourceImpl @Inject constructor(
  */
 interface FinanceRemoteDataSource {
     suspend fun getMostActivesStocks(): List<StockPreview>
+
+    suspend fun getStockProfile(symbol: String): StockProfile
 }
