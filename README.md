@@ -14,7 +14,7 @@ Thx a lot Othneil Drew for this awesome template, shared with MIT License!
 <!-- [![Contributors][contributors-shield]][contributors-url] pro subscribe gitHub required-->
 <!-- [![Forks][forks-shield]][forks-url] -->
 <!-- [![Stargazers][stars-shield]][stars-url] -->
-[![Issues][issues-shield]][issues-url]
+<!-- [![Issues][issues-shield]][issues-url] -->
 <!-- [![MIT License][license-shield]][license-url] -->
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
