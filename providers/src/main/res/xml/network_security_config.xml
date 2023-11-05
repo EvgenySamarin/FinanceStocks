@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config xmlns:tools="http://schemas.android.com/tools">
+    <!--
+    Allows you to connect via unsecured connections (http) to the API.
+    Set solely for the convenience of the test implementation,
+    in a production environment such an approach is highly undesirable.
+
+    see: https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted
+    -->
+    <base-config
+        cleartextTrafficPermitted="true"
+        tools:ignore="InsecureBaseConfiguration" />
+    <debug-overrides>
+        <trust-anchors>
+            <!--
+            Trust user added CAs while debuggable only. Add the required certificates to the
+            raw folder (there are no certificates in the current project, added just to emphasize
+            an important point)  -->
+            <!-- <certificates src="@raw/user_ca"/> -->
+        </trust-anchors>
+    </debug-overrides>
+</network-security-config>
