@@ -104,6 +104,7 @@ dependencies {
     implementation(Lib.LegacyUI.fragmentKtx)
 
     testImplementation(Lib.Tests.junit)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0-RC")
 
     androidTestImplementation(platform(Lib.BomCompose.bomCompose))
     androidTestImplementation(Lib.BomCompose.uiTestJunit4)
