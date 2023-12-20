@@ -1,4 +1,4 @@
-package ey.samarin.financestocks.features.detail_screen
+package ey.samarin.financestocks.screens.detail_screen
 
 import android.os.Bundle
 import android.view.LayoutInflater

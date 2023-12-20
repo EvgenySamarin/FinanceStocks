@@ -1,4 +1,4 @@
-package ey.samarin.financestocks.features.detail_screen
+package ey.samarin.financestocks.screens.detail_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

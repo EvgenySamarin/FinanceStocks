@@ -1,4 +1,4 @@
-package ey.samarin.financestocks.features.main_screen
+package ey.samarin.financestocks.screens.main_screen
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
