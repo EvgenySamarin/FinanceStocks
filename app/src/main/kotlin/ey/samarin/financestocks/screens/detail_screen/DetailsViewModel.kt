@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ey.samarin.domain.stocks.GetStockProfileUseCase
+import ey.samarin.models.DetailUIState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -36,15 +37,8 @@ class DetailsViewModel @Inject constructor(
             )
         },
     ) {
-        val stockProfile = getStockProfile(symbol = stockSymbol)
-        _uiState.emit(
-            DetailUIState(
-                title = stockSymbol,
-                sector = stockProfile.sector,
-                address = stockProfile.combinedAddress,
-                longBusinessSummary = stockProfile.longBusinessSummary,
-            )
-        )
+        val response = getStockProfile(symbol = stockSymbol)
+        _uiState.emit(response)
     }
 
     private fun launchAsync(
@@ -63,11 +57,3 @@ class DetailsViewModel @Inject constructor(
         }
     }
 }
-
-data class DetailUIState(
-    val title: String = "",
-    val sector: String = "",
-    val address: String = "",
-    val longBusinessSummary: String = "",
-    val errorText: String = "",
-)
