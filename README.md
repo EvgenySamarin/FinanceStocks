@@ -108,7 +108,7 @@ android application.
 - [x] Use simple native UI elements (no graphs needed). However, try presenting the
   information that reflects stocks the most. If possible use Jetpack Compose in the main
   page and XML Layout in the details screen.
-- [ ] Create Unit tests with reasonable code coverage. - not done yet, still in progress
+- [ ] Create Unit tests with reasonable code coverage. - still in progress, only for one useCase
 - [x] Use Coroutines, MVVM.
 - [x] Do not use any additional frameworks, except those related to the Coroutines,
   networking, or for the DI.
