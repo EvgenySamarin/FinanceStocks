@@ -13,9 +13,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import ey.samarin.financestocks.Routes.Detail.stockSymbol
 import ey.samarin.financestocks.databinding.FragmentDetailsContainerBinding
-import ey.samarin.financestocks.features.detail_screen.DetailsFragment
-import ey.samarin.financestocks.features.main_screen.MainScreen
-import ey.samarin.financestocks.features.main_screen.MainViewModel
+import ey.samarin.financestocks.screens.detail_screen.DetailsFragment
+import ey.samarin.financestocks.screens.main_screen.MainScreen
+import ey.samarin.financestocks.screens.main_screen.MainViewModel
 
 /**
  * Here you can define different flags based on windowsSize or just push it further to concrete screen

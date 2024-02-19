@@ -11,11 +11,11 @@ Thx a lot Othneil Drew for this awesome template, shared with MIT License!
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+<!-- [![Contributors][contributors-shield]][contributors-url] pro subscribe gitHub required-->
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!-- [![Stargazers][stars-shield]][stars-url] -->
+<!-- [![Issues][issues-shield]][issues-url] -->
+<!-- [![MIT License][license-shield]][license-url] -->
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -53,19 +53,9 @@ Thx a lot Othneil Drew for this awesome template, shared with MIT License!
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -84,64 +74,44 @@ android application.
 ### Built With
 
 * [![RapidApi][Yahoo-Finance-API from RapidApi]][https://rapidapi.com/sparior/api/yahoo-finance15]
-* [![JQuery][JQuery.com]][JQuery-url]
+* kotlin = "1.9.0"
+* coroutines = "1.7.3"
+* coreKtx = "1.12.0"
+* gson = "2.10.1"
+* retrofit = "2.9.0"
+* okHttpLoggingInterceptor = "4.11.0"
+* hilt = "2.48"
+* hiltComposeNavigation = "1.1.0"
+* viewMaterial = "1.10.0"
+* fragmentKtx = "1.6.2"
+* composeActivity = "1.8.0"
+* composeLifecycleRuntime = "2.6.2"
+* composeNavigation = "2.7.5"
+* bomCompose = "2023.08.00"
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/EvgenySamarin/FinanceStocks.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] It must have a list and description screens.
+- [x] Use Yahoo Finance API (https://rapidapi.com/apidojo/api/yh-finance) for the data list
+  (market/v2/get-summary) and present it. Every 8 seconds, this screen should update the
+  list from the API. Yahoo Finance has limits for free registration. Because of that, it might
+  be required to register a second time. - this link is broken, because API no loner supported,
+  so I used another one: https://rapidapi.com/sparior/api/yahoo-finance15
+  (methods most_actives and asset-profile)
+- [x] On the top of the list screen, the search bar should let the user filter out stocks by the
+  title.
+- [x] When pressed on the list item, it should get detailed info (stock/v2/get-summary) and
+  present it.
+- [x] Use simple native UI elements (no graphs needed). However, try presenting the
+  information that reflects stocks the most. If possible use Jetpack Compose in the main
+  page and XML Layout in the details screen.
+- [ ] Create Unit tests with reasonable code coverage. - still in progress, only for one useCase
+- [x] Use Coroutines, MVVM.
+- [x] Do not use any additional frameworks, except those related to the Coroutines,
+  networking, or for the DI.
 
 See the [open issues](https://github.com/EvgenySamarin/FinanceStocks/issues) for a full list of
 proposed features (and known issues).
@@ -149,56 +119,15 @@ proposed features (and known issues).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@EvgenySamarin](https://twitter.com/EvgenySamarin) - ey.samarin@gmail.com
+Twitter (X) / [@EvgenySamarin](https://twitter.com/EvgenySamarin) - ey.samarin@gmail.com
 
 Project
 Link: [https://github.com/EvgenySamarin/FinanceStocks](https://github.com/EvgenySamarin/FinanceStocks)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -230,24 +159,3 @@ Link: [https://github.com/EvgenySamarin/FinanceStocks](https://github.com/Evgeny
 [product-screenshot]: images/screenshot.png
 
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-
-[Next-url]: https://nextjs.org/
-
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-
-[React-url]: https://reactjs.org/
-
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-
-[Vue-url]: https://vuejs.org/
-
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 

@@ -90,6 +90,9 @@ class NetworkModule {
     }
 
 
+    /**
+     * Here you can set the timeouts for the connection and read operations
+     */
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -119,7 +122,7 @@ class NetworkModule {
                 val updatedRequest = origin.newBuilder()
                     .addHeader(
                         name = "X-RapidAPI-Key",
-                        value = "7ab0517ebamsh354f040b6a7611bp168b39jsn458e440fa95f"
+                        value = BuildConfig.RAPID_API_KEY
                     )
                     .addHeader(
                         name = "X-RapidAPI-Host",
