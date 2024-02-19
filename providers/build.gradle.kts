@@ -1,5 +1,8 @@
 import config.BuildConfig
 import config.Lib
+import org.jetbrains.kotlin.konan.properties.hasProperty
+import java.io.FileReader
+import java.util.Properties
 
 plugins {
     id("com.android.library")
@@ -23,9 +26,17 @@ android {
         buildConfig = true
     }
 
+    val localProps = Properties()
+    try {
+        localProps.load(FileReader("local.properties"))
+    } catch (_: Exception) {
+        println("File \"local.properties\" does not exist")
+    }
+
     buildTypes {
         all {
             buildConfigField("String", "BASE_API_URL", "\"${BuildConfig.BASE_API_URL_TEST}\"")
+            buildConfigField("String", "RAPID_API_KEY", getRapidApiKey(localProps))
         }
 
         getByName(BuildConfig.BuildType.DEBUG) {
@@ -57,4 +68,13 @@ dependencies {
     kapt(Lib.Di.hiltCompiler)
 
     testImplementation(Lib.Tests.junit)
+}
+
+fun getRapidApiKey(localProps: Properties): String {
+    val apiKey = "apiKey"
+    return if (localProps.hasProperty(apiKey)) {
+        localProps.getProperty(apiKey).toString()
+    } else {
+        "\"StubApiKey\""
+    }
 }
